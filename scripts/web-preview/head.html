@@ -1,0 +1,21 @@
+<title>Damage Build Preview</title>
+<style>
+/* Layout: the real app build, running in a phone-sized frame centred on a dark desk. Single look on purpose: the app itself is light-only. */
+:root { --desk: #14160f; --desk-edge: #2b2f20; --paper: #ffffff; --ink: #000000; --lime: #C6F24E; color-scheme: light; }
+html, body { height: 100%; }
+html { background: var(--desk); overflow: hidden; } /* hidden here so the frame, not the window, does the clipping */
+body {
+  position: relative; margin: 0 auto; max-width: 430px; max-height: 932px; top: 50%; translate: 0 -50%;
+  transform: translateZ(0); /* keeps the app's pop-ups inside the frame */
+  overflow: hidden; background: var(--paper); color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (min-width: 462px) { body { border-radius: 36px; box-shadow: 0 0 0 3px var(--ink), 0 0 0 4px var(--desk-edge), 10px 10px 0 3px var(--lime); max-height: min(932px, calc(100% - 48px)); } }
+#root { display: flex; height: 100%; flex: 1; }
+#boot { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; }
+</style>
+<div id="root"><div id="boot">Loading Damage…</div></div>
+<script>
+/* The app reads the address to pick a screen; an artifact's address isn't one of its screens, so start it at Home. */
+try { history.replaceState(null, '', '/'); } catch (e) {}
+</script>
